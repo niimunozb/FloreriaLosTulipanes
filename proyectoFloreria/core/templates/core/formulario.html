@@ -1,0 +1,81 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+
+Pagina principal
+
+{% endblock titulo %}
+
+{% load static %}
+
+
+{%  block contenido %}
+
+
+<div class="formulario" style="padding-top: 20px; padding-bottom: 20px;">
+    <center>
+
+           
+
+                                                    <!--tipo multi parte-->
+         <form id="frmdatos" method="POST" action="" enctype="multipart/form-data">
+         {% csrf_token %}
+
+        <table border="1" style="border-color: saddlebrown; ">
+            <tr>
+                <td colspan="2" style="text-align: center;font-size: 20px;">Registrar Productos</td>
+            </tr>
+            <tr>
+                <td>Nombre:</td>
+                <td>
+                    <input type="text" name="txtNombre" id="txtNombre"> </td>
+            </tr>
+            <tr>
+                <td>Precio:</td>
+                <td>
+                    <input type="number" name="txtPrecio" id="txtPrecio"> </td>
+            </tr>
+            <tr>
+                <td>Descripcion:</td>
+                <td>
+                    <input type="text" name="txtDescripcion" id="txtDescripcion"> </td>
+            </tr>
+           
+            <tr>
+                <td>Seleccione imagen</td>
+                <td>
+                    <input type="file" name="txtImagen">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Categoria:</td>
+                <td> 
+                <select name="cboCategoria">
+                    {% for c in listacategoria %}
+                   <option>{{c.name}}</option>
+                   {% endfor %}
+                </select>
+                 </td>
+            </tr>
+
+            <center>
+
+            <tr>
+                <td>
+                    <p>Seleccione:</p>
+                </td>
+                <td>
+                        <input type="submit" value="Guardar" name="accion">
+                        <input type="submit" value="Eliminar" name="accion">
+                </td>
+            </tr>
+        </center>
+
+        </table>
+        </form>
+    </center>
+</div>
+<div id="respuesta">{{msg}}</div>
+
+{% endblock contenido %}

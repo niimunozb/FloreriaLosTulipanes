@@ -1,0 +1,64 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+
+Productos
+
+{% endblock titulo %}
+
+{% load static %}
+
+
+
+{%  block contenido %}
+
+<!--listado de flores-->
+
+<h2 class ="titulo">Galeria de flores</h2>
+
+
+<!--Cada una de las flores-->
+
+{% for f in lista %}   
+
+
+
+
+<div class="col-lg-3 col-md-4 col-sm-6 mix sale rounded" style="display: inline-block; padding: 20px; " data-bound="">
+
+        <div class="single_product" style="border:1px solid saddlebrown; padding-bottom: 10px;  ">
+
+        <center>
+            <div class="product_image" style="padding-top: 10px">
+                <img src="{{f.imagen.url}}" style="width:150px; height: 150px; border-image: 2px; text-align: center;" class="rounded">
+                <div class="new_badge" style="text-align: center;" >{{f.descripcion}}</div>
+                <div class="box-content" style="text-align: center;">
+                    <a href="{% url 'AGREGAR_CARRO' f.name %}"><i class="fa fa-cart-plus"></i></a>
+                    <a href="#"><i class="fa fa-search"></i></a>
+
+                    
+                </div>										
+            </div>
+        </center>
+    
+            <div class="product_btm_text" style="text-align: center;">
+                <h4>{{f.name}}</h4>
+										
+                <h3 class="price" style="color:darkgreen; size: 50pxpx;">${{f.precio}}</h3>
+    
+            </div>
+        </div>
+        
+</div>
+    
+
+
+
+
+    
+
+{% endfor %}
+
+
+{% endblock contenido %}
+
