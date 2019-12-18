@@ -23,17 +23,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 
-
     path('admin/', admin.site.urls),
 
-    path('',include('core.urls')), # indicar que utilice el archivo URSL.py de la floreria
+    path('',include('core.urls')), # indicador de URSL.py floreria
 
     path('accounts/',include('django.contrib.auth.urls')),
 
-
+    path('oauth/',include('social_django.urls',namespace='social'))
 ]
 
-#incluira en el interor del path la ubicacion
-# si el archivo setting se descubre... direccion estatica que recib esa definicion
+#incluira la ubicacion
+#si el archivo setting se descubre... estaticamente recibe una definicion
 if settings.DEBUG:
-    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) #indicar una ubciacion
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) #indica ubciacion

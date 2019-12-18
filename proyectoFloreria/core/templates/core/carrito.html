@@ -8,141 +8,76 @@ Carrito
 
 {% load static %}
 
-
 {%  block contenido %}
-
-
-<h1 class="text-center display-4 my-4 ">Carrito de Compras</h1>
 <center>
-<div class="container">
-    <table border="1">
-        <tr>
-            <td>Nombre</td>
-            <td>Precio</td>
-            <td>Cantidad</td>
-            <td>Total</td>
-        </tr>
-        {% for f in x %}
-        <tr>
-            <td>{{f.nombre}}</td>
-            <td>{{f.precio}}</td>
-            <td>{{f.cantidad}}</td>
-            <td>{{f.total}}</td>
-            <td>
-                <input type="button" value="+" onclick="javascript:location.href='{% url 'CARRO_MAS' f.nombre %}'" >
-                <input type="button" value="-" onclick="javascript:location.href='{% url 'CARRO_MENOS' f.nombre %}'" >
-            </td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td colspan="3">Total</td>  
-            <td>{{total}}</td>  
-            <td>
-                <input type="button" value="Grabar Carro" onclick="javascript:location.href='{% url 'GRABAR_CARRO' %}'" >
-            </td>
-        </tr>
-    </table>
-</div>
-{{mensaje}}
-</center>
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th class="text-center">Precio</th>
-                        <th class="text-center">Total</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                        
-
-                
-                    <tr>
-                        <td class="col-md-6">
-                            <div class="media">
-                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{car.imagen}}" style="width: 72px; height: 72px;"> </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><a href="#">{{f}}</a></h4>  
-                                </div>
-                            </div>
-                        </td>
-
-                        <td class="col-md-1" style="text-align: center">
-                      
-                        </td>
-                        <td class="col-md-1 text-center"><strong>{{listaCarrito}}</strong></td>
-                        
-
-
-                        <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                    </tr>
-
-                    
-
-
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong>$6.94</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$31.53</strong></h3></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
-                        <td>
-                        <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div style="padding: 50px;">
+        <div class="container">
+            <div class="row destacados">  
+                <div >
+                    <div class="box3">
+                        <h3 class="titulo">Carro de Compras</h2>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre del Producto</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Precio por Producto</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        {% for f in x %}
+                        <tbody>
+                            <tr>
+                                <td class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="#">{{f.nombre}}</a></h4>  
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="col-md-1" style="text-align: center">${{f.precio}}</td>
+                                <td class="col-md-1 text-center"><strong>{{f.cantidad}}</strong></td>
+                                <td class="col-md-1">${{f.total}}</td>
+                                <td>
+                                    <input style="background: white" type="button" value=✔️ onclick="javascript:location.href='{% url 'CARRO_MAS' f.nombre %}'" >
+                                    <input style="background: white" type="button" value=❌ onclick="javascript:location.href='{% url 'CARRO_MENOS' f.nombre %}'" >
+                                </td>
+                            </tr>
+                            {% endfor %} 
+                            <tr>
+                            <td><h3>Valor Total:</h3></td>   
+                                <td>   </td>
+                                <td>   </td>
+                                <td class="text-right"><h3><strong>${{total}}</strong></h3></td>
+                                <td>   </td>
+                            </tr>
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>
+                                    <button type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-shopping-cart" ><a href="{% url 'GAL' %}">Seguir Comprando</a></span> 
+                                    </button>
+                                </td>
+                                <td>
+                                    <input class="btn btn-success" type="button" value="PAGAR" onclick="javascript:location.href='{% url 'GRABAR_CARRO' %}'" ></td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-
 </center>
-
 
 {% endblock contenido %}
 

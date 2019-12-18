@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path,include 
+from django.urls import path
 
 #se importan las vistas
 from .views import *
@@ -22,7 +22,4 @@ urlpatterns = [
     path('carro_menos/<id>/',carro_compras_menos,name='CARRO_MENOS'),
     path('grabar_carro/',grabar_carro,name="GRABAR_CARRO"),
     path('vacir_carrito/',vacio_carrito,name='VACIARCARRITO'),
-
-
-
 ]

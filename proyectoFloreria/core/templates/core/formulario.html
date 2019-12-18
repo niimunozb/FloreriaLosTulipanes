@@ -8,71 +8,44 @@ Pagina principal
 
 {% load static %}
 
-
 {%  block contenido %}
-
-
 <div class="formulario" style="padding-top: 20px; padding-bottom: 20px;">
     <center>
-
-           
-
-                                                    <!--tipo multi parte-->
-         <form id="frmdatos" method="POST" action="" enctype="multipart/form-data">
+        <!--tipo multi parte-->
+        <form id="frmdatos" method="POST" action="" enctype="multipart/form-data">
          {% csrf_token %}
-
-        <table border="1" style="border-color: saddlebrown; ">
-            <tr>
-                <td colspan="2" style="text-align: center;font-size: 20px;">Registrar Productos</td>
-            </tr>
-            <tr>
-                <td>Nombre:</td>
-                <td>
-                    <input type="text" name="txtNombre" id="txtNombre"> </td>
-            </tr>
-            <tr>
-                <td>Precio:</td>
-                <td>
-                    <input type="number" name="txtPrecio" id="txtPrecio"> </td>
-            </tr>
-            <tr>
-                <td>Descripcion:</td>
-                <td>
-                    <input type="text" name="txtDescripcion" id="txtDescripcion"> </td>
-            </tr>
-           
-            <tr>
-                <td>Seleccione imagen</td>
-                <td>
-                    <input type="file" name="txtImagen">
-                </td>
-            </tr>
-
-            <tr>
-                <td>Categoria:</td>
-                <td> 
-                <select name="cboCategoria">
-                    {% for c in listacategoria %}
-                   <option>{{c.name}}</option>
-                   {% endfor %}
-                </select>
-                 </td>
-            </tr>
-
-            <center>
-
-            <tr>
-                <td>
-                    <p>Seleccione:</p>
-                </td>
-                <td>
-                        <input type="submit" value="Guardar" name="accion">
-                        <input type="submit" value="Eliminar" name="accion">
-                </td>
-            </tr>
-        </center>
-
-        </table>
+            <table border="2" class="table"  style="text-align: center;padding-left: 10px;padding-top: 50px; padding-bottom: 50px;">
+                <tr>
+                    <td colspan="1" style="text-align: center;font-size: 25px;">Registro de Productos</td>
+                </tr>
+                <tr>
+                    <td>Nombre Producto:  <input type="text" name="txtNombre" id="txtNombre"> </td>
+                </tr>
+                <tr>
+                    <td>Precio:           <input type="number" name="txtPrecio" id="txtPrecio"> </td>
+                </tr>
+                <tr>
+                    <td>Descripcion:      <input type="text" name="txtDescripcion" id="txtDescripcion"> </td>
+                </tr>    
+                <tr>
+                    <td>Vista previa del Producto       <input type="file" name="txtImagen">           </td>
+                </tr>
+                <tr>
+                    <td>Categoria:
+                        <select name="cboCategoria">
+                            {% for c in listacategoria %}
+                            <option>{{c.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                    <div class="text-center">
+                        <td>
+                            <button type="submit"  value="Guardar" name="accion" class="btn btn-primary mt-4" style="font-size: 15px">Agregar Producto</button>
+                            <button type="submit" value="Eliminar" name="accion" class="btn btn-primary mt-4" style="font-size: 15px">Elimiar Producto</button>
+                        </td>
+                    </div> 
+            </table>
         </form>
     </center>
 </div>

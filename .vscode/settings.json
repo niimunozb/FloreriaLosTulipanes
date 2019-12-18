@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "${workspaceFolder}\\myEntorno\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\TSQ CrexSLurR\\Miniconda3\\python.exe",
+    "python.linting.enabled": false
 }

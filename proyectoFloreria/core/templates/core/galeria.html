@@ -1,56 +1,35 @@
 {% extends "core/base.html" %}
 
 {% block titulo %}
-
-Productos
-
+Galeria
 {% endblock titulo %}
 
 {% load static %}
 
-
-
 {%  block contenido %}
-
 <!--listado de flores-->
-
-<h2 class ="titulo">Galeria de flores</h2>
-
-
+<h2 class ="titulo">Galeria</h2>
 <!--Cada una de las flores-->
-
 {% for f in lista %}   
-
-
-
-
-<div class="col-lg-3 col-md-4 col-sm-6 mix sale rounded" style="display: inline-block; padding: 20px; " data-bound="">
-
-        <div class="single_product" style="border:1px solid saddlebrown; padding-bottom: 10px;  ">
-
-        <center>
+<div class="col-lg-3 col-md-4 col-sm-6 mix sale rounded" style="display: inline-block; padding-left: 140px; " data-bound="">
+    <center>
+        <div class="single_product" style="border:3px solid cornflowerblue; padding-bottom: 10px;">
             <div class="product_image" style="padding-top: 10px">
-                <img src="{{f.imagen.url}}" style="width:150px; height: 150px; border-image: 2px; text-align: center;" class="rounded">
-                <div class="new_badge" style="text-align: center;" >{{f.descripcion}}</div>
-                <div class="box-content" style="text-align: center;">
-                    <a href="{% url 'AGREGAR_CARRO' f.name %}"><i class="fa fa-cart-plus"></i></a>
-                    <a href="#"><i class="fa fa-search"></i></a>
-
-                    
-                </div>										
+                <img src="{{f.imagen.url}}" style="width:150px; height: 150px; border-image: 2px; text-align: center;" class="rounded">								
             </div>
-        </center>
-    
             <div class="product_btm_text" style="text-align: center;">
-                <h4>{{f.name}}</h4>
-										
-                <h3 class="price" style="color:darkgreen; size: 50pxpx;">${{f.precio}}</h3>
-    
+                <h4>{{f.name}}</h4>						
+                <h3 class="price" style="color:darkgreen; size: 50pxpx;">${{f.precio}}
+                    <a href="{% url 'AGREGAR_CARRO' f.name %}"><i class="fa fa-cart-plus"></i></a>
+                    <h4>
+                        {{f.descripcion}}
+                    </h4>
+                </h3>
             </div>
         </div>
-        
+    </center>
 </div>
-    
+
 
 
 

@@ -1,137 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-  <!--Referencia a los estilos-->
+  <!--Referencia style-->
   <link  rel="stylesheet" href="{% static 'css/estilos.css' %}" type="text/css" >
-
-  <!--Referencia a icono-->
+  <!--Referencia logo-->
   <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/es/img/favicon.ico?v=a8def514be8a">
-
-  <!--Referencia a estilos de boostrapt Online-->
+  <!--Referencia style boostrapt-line-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
-
-  <!--Referencia a fuente -->  
+  <!--fuente-->  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-
-
-  <!--Bloque de python para el titulo-->
+  <!--Bloque para titulo-->
   <title>
     {% block titulo %} 
     
     {% endblock titulo %}
   </title>
 </head>
-
 <body>
-
-  <!--Referencia a los JS de boostrap Online-->
+  <!--Referencia JS Online-->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+  </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-    
-
-  <!--imagen superior solo en index-->
-  <div>
-    {% block imgindex %}
-
-    <img src="{% static 'img/subnav.jpg' %}" width="100%px" height="40%" alt="Responsive image"> 
-
-    {% endblock imgindex %}
-  </div>
-
-
-  <!--barra de navegacion Izquerda-->
-  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: sienna; ">
+    crossorigin="anonymous">
+  </script>
+  <!--barra de principal-->
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: cornflowerblue; ">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
-
-
         <li class="nav-item">
           <a class="nav-link" href="{% url 'IND' %}">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'GAL' %}">Productos</a>
+          <a class="nav-link" href="{% url 'GAL' %}">Flores</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'QUIEN' %}">Nosotros</a>
+          <a class="nav-link" href="{% url 'QUIEN' %}">Sobre Nosotros</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'UBI' %}">Ubicacion</a>
+          <a class="nav-link" href="{% url 'UBI' %}">Donde estamos 📌</a>
         </li>
         {% if user.is_superuser %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'FORMU' %}">Formulario</a>
+          <a class="nav-link" href="{% url 'FORMU' %}">Agregar Producto 📃</a>
         </li>
         {% endif %}
       </ul>
     </div>
-    <!--Barra de navegacion almedio-->
+    <!--Barra superrior-->
     <div class="mx-auto order-0">
-      <a class="navbar-brand mx-auto" href="#">☼ Petalos ☼</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
-
-    <!--Barra de navegacion derecha-->
+    <!--Barra superior derecha-->
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
+      <ol class="navbar-nav ml-auto">
+       {% if user.is_authenticated %}
+       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'REGIS' %}">Registrarse</a>
+          <a class="nav-link" href="{% url 'REGIS' %}">Registro</a>
         </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'INGRE' %}">Ingresar</a>
+          <a class="nav-link" href="{% url 'INGRE' %}">Inicio Sesion</a>
         </li>
+        {% endif %}
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'CERRARSESION' %}">Salir</a>
         </li>
         {% endif %}
-
-         <li class="nav-item">
-          <a class="nav-link" href="{% url 'CARRITO' %}">Carrito</a>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'CARRITO' %}">🛒</a>
         </li>
-      </ul>
+        <li>
+          <b> Hola, {{ user.username }}</b>
+        </li>
+      </ol>
     </div>
-
   </nav>
-  <!--Contenido de la pagina web-->
+    <!--imagen inicio-->
+  <div>
+    <center class="imagen" margin="15px">
+      {% block imgindex %}
+        <img src="{% static 'img/portal.jpg' %}" alt="Responsive image" > 
+      {% endblock imgindex %}
+    </center>
+  </div>
+  <!--Contenido de la pagina-->
   <section class="contenido">
     {% block contenido %} 
     
     {% endblock contenido %}
   </section>
-<script src="https://apps.elfsight.com/p/platform.js" defer></script>
-    <div class="elfsight-app-e6c012dc-585c-4ef5-b098-69dd1787e1ef"></div>
-
-
-
+  <!--barra inferior text-->
   <footer>
-      <div class="bottom section-padding">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <div class="copyright">
-                  <p>© <span>2019</span> <a href="#" class="transition">@Floreria Petalos, todos los derechos reservados.</a></p>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: cornflowerblue; "> 
+        <div>
+            <div class="bottom section-padding">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12 text-center" >
+                    <div class="copyright">
+                      <center>  
+                        <p>©️ <span>2019</span> <a href="#" class="transition">@Floreria los Tulipanes. </a></p>
+                        <p>Somos expertos en flores tenemos más de 14 años de experiencia 
+                            entregando bellos arreglos florales.
+                            Entendemos nuestro trabajo como un medio de comunicación para transmitir emociones;
+                            cada vez que usted compra con nosotros no solo obtiene productos de primera calidad 
+                            sino que un servicio integral donde cada detalle cuenta para entregar el mensaje que usted 
+                            está enviando, cuidamos de cada detalle, para que nuestros clientes logren transmitir este 
+                            mensaje con un regalo único y bello que signifique un recuerdo inolvidable.
+                        </p>
+                      </center>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
+    </nav>
   </footer>
-
-
 </body>
-
 </html>

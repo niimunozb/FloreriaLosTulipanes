@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from .models import *
+
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import CreateView
+
+
 from django.contrib.auth import authenticate,logout,login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -8,15 +13,12 @@ import datetime
 from .clase import elemento
 
 
-
-
-
+#rest_framework
+from rest_framework import viewsets
+##from .serializers import FloreriaSerializer
 
 # Create your views here.
-
-
-
-#------------------------------------------------------------------------CARRITOS--------------------------------------------------------------------
+#---CARRITOS---#
 
 
 @login_required(login_url='/ingresar/')
@@ -126,7 +128,7 @@ def vacio_carrito(request):
 
 #metodo de login LOGIN ACCESO
 def login_acceso(request):
-    msg=''
+    
     #si alguien ha enviado algun dato
     if  request.POST:
 
@@ -136,20 +138,23 @@ def login_acceso(request):
 
         #creamos un modelo de usuarios para autentificar (con usuario y password)
         us= authenticate(request,username=usuario,password=password)
+        msg=''
+        request.session["carritox"] = []
+        request.session["carrito"] = []
 
         #si el usuario existe y esta activo
         if us is not None and us.is_active:
             #autentifique el login yt pase el usuario
             auth_login(request,us)
             #te lleva al index
-            return render(request,"core/index.html",{'msg':'entro'})
+            return render(request,"core/index.html",{'msg':'CORRECTO'})
     #si no esta te lleva al login        
-    return render(request,"core/ingresar.html",{'msg':'no entro'})
+    return render(request,"core/ingresar.html",{'msg':'ERROR'})
 
 #metodo cerrar sesion    
 def cerrar_sesion(request):
     logout(request)
-    return HttpResponse("<script>alert('cerro sesion');window.location.href='/';</script>")
+    return HttpResponse("<script>alert('Sesion cerrada');window.location.href='/';</script>")
 
 
 
@@ -236,3 +241,15 @@ def formulario(request):
             return render(request,'core/formulario.html',{'listacategoria':categorias,'msg':'elimino'})
 
     return render(request,'core/formulario.html',{'listacategoria':categorias})     
+
+#####################################################################
+def isset(variable):
+	return variable in locals() or variable in globals()        
+
+#class FloreriaViewset(ViewSet.ModelViewSet):
+#    queryset = Pelicula.objectws.all()
+#    serializer_class = FloreriaSerializer
+
+class RegistroUsuario(CreateView):
+    model = User
+    template_name = "usuario/registrar.html"
