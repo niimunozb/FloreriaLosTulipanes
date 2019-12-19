@@ -14,7 +14,7 @@ from .clase import elemento
 
 
 #rest_framework
-from rest_framework import viewsets
+#from rest_framework import viewsets
 ##from .serializers import FloreriaSerializer
 
 # Create your views here.

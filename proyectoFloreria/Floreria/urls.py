@@ -28,8 +28,6 @@ urlpatterns = [
     path('',include('core.urls')), # indicador de URSL.py floreria
 
     path('accounts/',include('django.contrib.auth.urls')),
-
-    path('oauth/',include('social_django.urls',namespace='social'))
 ]
 
 #incluira la ubicacion
